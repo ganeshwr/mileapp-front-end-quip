@@ -2,7 +2,7 @@
 
 1. Do you prefer vuejs or reactjs? Why ?
   
-  Answer: I tried both, and I prefer reactjs over vuejs because,
+  **Answer:**  I tried both, and I prefer reactjs over vuejs because,
   - Being backed by Facebook
   - More popular based on StackOverflow survey
   - Support cross-platform with its variant (React Native for mobile)
@@ -12,13 +12,13 @@
 
 2. What complex things have you done in frontend development ?
 
-Answer: Building a 3D interface web app to design a perforated metal. Involves many 3D assets, mathematical formulas, and calculations. And many iterations over the business logic and final result with the client.
+**Answer:**  Building a 3D interface web app to design a perforated metal. Involves many 3D assets, mathematical formulas, and calculations. And many iterations over the business logic and final result with the client.
 
 <hr>
 
 3. why does a UI Developer need to know and understand UX? how far do you understand it?
 
-Answer: Because the main target of a lot of company's products is to get more User Satisfaction. And UX is to make sure that the product is usable for the User to use. What's the point of eye-catchy UI if the app itself is hard to operate.  
+**Answer:**  Because the main target of a lot of company's products is to get more User Satisfaction. And UX is to make sure that the product is usable for the User to use. What's the point of eye-catchy UI if the app itself is hard to operate.  
 
 I know some basic stuff, like minimizing as much as possible every technical term. Does it require minimal or better, no instruction to use? And retain UI consistency as much as possible.
 
@@ -26,7 +26,7 @@ I know some basic stuff, like minimizing as much as possible every technical ter
 
 4. Give your analysis results regarding https://taskdev.mile.app/login from the UI / UX side!
 
-Answer: 
+**Answer:** 
 
 Pros: 
 - Responsive for mobile phone viewport
@@ -51,7 +51,7 @@ Cons:
 
 1. deploy on [https://www.netlify.com](https://www.netlify.com/)!
 
-Answer: https://vermillion-cocada-69820e.netlify.app/
+**Answer:**  https://vermillion-cocada-69820e.netlify.app/
 
 <hr>
 
@@ -66,6 +66,7 @@ let A = 3
 let B = 5
 
 // Tukar Nilai variabel A dan B, Syarat Tidak boleh menambah Variabel Baru
+// **Answer** 
 A = A + B
 B = A - B
 A = A - B
