@@ -50,9 +50,12 @@ Cons:
 [Image: Screen Shot 2022-01-18 at 11.14.26.png]
 
 1. deploy on [https://www.netlify.com](https://www.netlify.com/)!
+
+Answer: https://vermillion-cocada-69820e.netlify.app/
+
+<hr>
+
 2. Solve the logic problems below !
-
-
 
 Logic
 6.a Swap the values of variables A and B

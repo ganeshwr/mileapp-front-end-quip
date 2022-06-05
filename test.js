@@ -22,7 +22,7 @@ let numbersB = [
   64, 65, 66, 67, 68, 69, 70, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83,
   84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100,
 ];
-// console.log(findMissingNumber(numbersB));
+console.log(findMissingNumber(numbersB));
 
 // ==========================================
 
@@ -51,7 +51,7 @@ let numbersC = [
   72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 83, 83, 84, 85, 86, 87, 88,
   89, 90, 91, 92, 92, 93, 94, 95, 96, 97, 98, 99, 100,
 ];
-// console.log(findCalledMultiple(numbersC));
+console.log(findCalledMultiple(numbersC));
 
 // 6.d
 function conversion(arr) {
