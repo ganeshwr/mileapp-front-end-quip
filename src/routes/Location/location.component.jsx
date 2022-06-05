@@ -1,4 +1,5 @@
-import { useState, useCallback, memo } from "react";
+import { useState, useCallback, memo, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   GoogleMap,
   useJsApiLoader,
@@ -7,6 +8,8 @@ import {
 } from "@react-google-maps/api";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import { UserContext } from "../../context/user.context";
+import Link from "@mui/material/Link";
 
 const containerStyle = {
   width: "100%",
@@ -27,6 +30,15 @@ const markers = [
 ];
 
 const Location = () => {
+  const navigate = useNavigate();
+  const { currentUser, setCurrentUser } = useContext(UserContext);
+
+  useEffect(() => {
+    if (currentUser == null) {
+      navigate("/login");
+    }
+  }, []);
+
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: "AIzaSyCN7fzrakEh4tx7C_2Fdm3Z6OGjBfIMWgc",
@@ -76,7 +88,20 @@ const Location = () => {
         margin: "0 50px",
       }}
     >
-      <Typography textAlign={"center"} sx={{fontSize:"2em", marginTop:4, marginBottom: 4}}>
+      <Link
+        href="#"
+        sx={{ float: "right" }}
+        onClick={() => {
+          setCurrentUser(null);
+          navigate("/login");
+        }}
+      >
+        Logout
+      </Link>
+      <Typography
+        textAlign={"center"}
+        sx={{ fontSize: "2em", marginTop: 4, marginBottom: 4 }}
+      >
         Nearest Drop-Point and Delivery-Point
       </Typography>
       <GoogleMap

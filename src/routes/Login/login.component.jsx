@@ -1,6 +1,6 @@
 import "./login.styles.scss";
 
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -12,6 +12,7 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Logo from "../../assets/logo.png";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { UserContext } from "../../context/user.context";
 
 const theme = createTheme();
 
@@ -46,6 +47,7 @@ const translations = {
 
 const Login = () => {
   const navigate = useNavigate();
+  const { setCurrentUser } = useContext(UserContext);
 
   const [inputDisabled, setInputDisabled] = useState(true);
   const [labels, setLabels] = useState(translations.eng);
@@ -77,6 +79,7 @@ const Login = () => {
     const data = new FormData(e.currentTarget);
 
     if (data.get("email") === "admin" && data.get("password") === "mileapp") {
+      setCurrentUser(true);
       navigate("/locations");
     } else {
       alert("Wrong email or password!");
