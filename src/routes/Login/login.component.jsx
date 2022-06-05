@@ -1,12 +1,10 @@
 import "./login.styles.scss";
 
-import * as React from "react";
-import Avatar from "@mui/material/Avatar";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
@@ -14,36 +12,75 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Logo from "../../assets/logo.png";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { maxWidth } from "@mui/system";
-
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://paket.id/home">
-        PT. Paket Informasi Digital
-      </Link>{" "}
-      2021
-      {"."} All Rights Reserved
-    </Typography>
-  );
-}
 
 const theme = createTheme();
 
+const translations = {
+  eng: {
+    login: "Login",
+    orgname: "Organization Name",
+    orgnamePHolder: "Type and press enter",
+    email: "Email Address or Username",
+    password: "Password",
+    registerLabel1: "Not registered yet?",
+    registerLabel2: "Contact us",
+    registerLabel3: "for more info",
+    callUsLabel: "Call Us Now",
+    copyrightLabel: "Copyright",
+    rights: "All Rights Reserved",
+  },
+  indo: {
+    login: "Login",
+    orgname: "Nama Organisasi",
+    orgnamePHolder: "Ketik dan tekan enter",
+    email: "Alamat Email atau Username",
+    password: "Kata sandi",
+    registerLabel1: "Belum terdaftar?",
+    registerLabel2: "Hubungi kami",
+    registerLabel3: "untuk info lebih lanjut",
+    callUsLabel: "Hubungi kami",
+    copyrightLabel: "Hak Cipta",
+    rights: "All Rights Reserved",
+  },
+};
+
 const Login = () => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+  const navigate = useNavigate();
+
+  const [inputDisabled, setInputDisabled] = useState(true);
+  const [labels, setLabels] = useState(translations.eng);
+  const {
+    login,
+    orgname,
+    orgnamePHolder,
+    email,
+    password,
+    registerLabel1,
+    registerLabel2,
+    registerLabel3,
+    callUsLabel,
+    copyrightLabel,
+    rights,
+  } = labels;
+
+  const orgNameChangeHandler = (e) => {
+    if (e.key === "Enter") {
+      const { value } = e.target;
+
+      setInputDisabled(!(value.length > 0));
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const data = new FormData(e.currentTarget);
+
+    if (data.get("email") === "admin" && data.get("password") === "mileapp") {
+      navigate("/locations");
+    } else {
+      alert("Wrong email or password!");
+    }
   };
 
   return (
@@ -92,9 +129,20 @@ const Login = () => {
               borderBottomRightRadius: "25px",
             }}
           >
-            <Typography textAlign={"right"} sx={{marginTop:3,marginRight:3}}>
-              <Link href="#" style={{marginRight:10}}>English</Link>
-              <Link href="#">Indonesia</Link>
+            <Typography
+              textAlign={"right"}
+              sx={{ marginTop: 3, marginRight: 3 }}
+            >
+              <Link
+                href="#"
+                onClick={() => setLabels(translations.eng)}
+                style={{ marginRight: 10 }}
+              >
+                English
+              </Link>
+              <Link href="#" onClick={() => setLabels(translations.indo)}>
+                Indonesia
+              </Link>
             </Typography>
             <Box
               sx={{
@@ -111,30 +159,28 @@ const Login = () => {
                 style={{ maxWidth: 150, marginBottom: 10 }}
               />
               <Typography component="h1" variant="h5">
-                Login
+                {login}
               </Typography>
-              <Box
-                component="form"
-                noValidate
-                onSubmit={handleSubmit}
-                sx={{ mt: 1 }}
-              >
+              <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
                 <TextField
                   margin="normal"
                   required
                   fullWidth
                   id="orgname"
-                  label="Organization Name"
+                  label={orgname}
                   name="orgname"
                   autoComplete="orgname"
+                  placeholder={orgnamePHolder}
+                  onKeyDown={orgNameChangeHandler}
                   autoFocus
                 />
                 <TextField
                   margin="normal"
                   required
+                  disabled={inputDisabled}
                   fullWidth
                   id="email"
-                  label="Email Address or Username"
+                  label={email}
                   name="email"
                   autoComplete="email"
                   autoFocus
@@ -142,9 +188,10 @@ const Login = () => {
                 <TextField
                   margin="normal"
                   required
+                  disabled={inputDisabled}
                   fullWidth
                   name="password"
-                  label="Password"
+                  label={password}
                   type="password"
                   id="password"
                   autoComplete="current-password"
@@ -155,21 +202,35 @@ const Login = () => {
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
                 >
-                  Login
+                  {login}
                 </Button>
                 <Grid container>
                   <Grid xs={12} item>
-                    Not registered yet?{" "}
-                    <Link href="#">
-                      {"Contact us"}
+                    {registerLabel1}{" "}
+                    <Link target={"_blank"} href="https://mywa.link/vr0op24n">
+                      {registerLabel2}
                     </Link>{" "}
-                    for more info
+                    {registerLabel3}
                   </Grid>
-                  <Grid item sx={{marginTop:5}}>
-                    Call Us Now: <a href="tel:+62 812-1133-5608">+62 812-1133-5608</a>
+                  <Grid item sx={{ marginTop: 5 }}>
+                    {callUsLabel}:{" "}
+                    <Link href="tel:+62 812-1133-5608">+62 812-1133-5608</Link>
                   </Grid>
                 </Grid>
-                <Copyright sx={{ mt: 5 }} />
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  align="center"
+                  sx={{ mt: 5 }}
+                >
+                  {copyrightLabel}
+                  {" © "}
+                  <Link color="inherit" href="https://paket.id/home">
+                    PT. Paket Informasi Digital
+                  </Link>{" "}
+                  2021
+                  {"."} {rights}
+                </Typography>
               </Box>
             </Box>
           </Grid>
